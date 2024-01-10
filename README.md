@@ -19,10 +19,10 @@ https://mui.com/material-ui/getting-started/installation/
 
 
 ## Project on github 
-https://github.com/SenPatthamawan/sportapp
+https://github.com/bobtail-soda/sport-app
 
 ### Clone repository from git
-` git clone https://github.com/SenPatthamawan/sportapp.git` 
+` git clone https://github.com/bobtail-soda/sport-app.git` 
 
 ### Download all packages
 `npm install`
