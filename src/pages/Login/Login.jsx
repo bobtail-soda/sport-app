@@ -1,4 +1,3 @@
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { 
       // Avatar,
          Button, 
@@ -17,24 +16,9 @@ import {
        
 
 import LoginImg from "/images/login.jpg"
+import Copyright from '../../components/shared/Copyright';
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://bobtail-soda.com/">
-        Bobtail Soda
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  )
-}
+
 
 const Login = () => {
   const handleSubmit = (event) => {
