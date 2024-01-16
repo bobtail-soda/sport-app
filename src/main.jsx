@@ -14,6 +14,7 @@ import SignUp from "./pages/SignUp/SignUp.jsx";
 import ActivityType from "./pages/ActivityType/ActivityType.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import CreateExercise from "./pages/Exercise/CreateExercise/CreateExercise.jsx";
+import RunTimeExercise from './pages/Exercise/CreateExercise/RunTimeExercise.jsx';
 import EditExercise from "./pages/Exercise/EditExercise/EditExercise.jsx";
 import DeleteExercise from "./pages/Exercise/DeleteExercise/DeleteExercise.jsx";
 import History from "./pages/History/History.jsx";
@@ -32,7 +33,7 @@ import LandingPageDesk4 from "./pages/LandingPage/LandingPageDesk4.jsx";
 import LandingPageDesk5 from "./pages/LandingPage/LandingPageDesk5.jsx";
 import ErrorPage from './pages/ErrorPage.jsx'
 import DashboardLayout from "./components/layouts/DashboardLayout";
-
+import ExerciseActivityLayout from './components/layouts/ExerciseActivityLayout.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -144,11 +145,20 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />
       }
-      // ,
-      // {
-      //   path: "/1",
-      //   element: <Dashboard1 />
-      // }
+  ]},
+  {
+    path: "/excercise-activity",
+    element: <ExerciseActivityLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "create",
+        element: <CreateExercise />
+      },
+      {
+        path: "run-time",
+        element: <RunTimeExercise />
+      }
   ]}
 ])
 

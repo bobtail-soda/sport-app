@@ -3,7 +3,6 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     colors: {
@@ -18,8 +17,6 @@ export default {
       'otp': '15px'
     }},
   },
-  plugins: [
-    require('flowbite/plugin')
-  ],
+  plugins: [],
 }
 
