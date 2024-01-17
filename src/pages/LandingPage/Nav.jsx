@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 text-black">
       <a href="/">Home</a>
       <a href="/landingPage2">page2</a>
       <a href="/landingPage3">page3</a>
