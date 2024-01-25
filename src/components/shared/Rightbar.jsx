@@ -8,7 +8,12 @@ import {
   ThemeProvider,
 } from "@mui/material"
 
+import { sizing } from '@mui/system';
+
+
+
 import AvatarImg from "/images/avatar.jpg"
+import Forgotpassword from "/images/forgotpassword.jpg"
 import { theme } from "./../../theme"
 
 
@@ -24,6 +29,7 @@ const Rightbar = () => {
               flexShrink: 0,
               '& .MuiDrawer-paper': {
                 width: drawerWidth,
+                height: '100%',
                 boxSizing: 'border-box',
                 bgcolor: 'primary.main',
               },
@@ -32,7 +38,10 @@ const Rightbar = () => {
             anchor="right"
           >
             <Divider />
-            <Grid
+            <div class="max-w-full">
+              <img src={AvatarImg} class="object-cover h-auto max-w-full" />
+            </div>
+            {/* <Grid
                   item
                   xs={false}
                   sm={4}
@@ -46,10 +55,11 @@ const Rightbar = () => {
                         : t.palette.grey[900],
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    height: 273,
+                    width: 'auto',
+                    height: '100%',
                   }}
-                />
-                <Box sx={{m: 4, color: 'primary.black'}}>
+                /> */}
+                <Box sx={{height: '100%', m: 4, color: 'primary.black'}}>
                   <Typography variant="h5" component="h2" 
                     sx={{
                       fontWeight: 'medium',
@@ -86,7 +96,7 @@ const Rightbar = () => {
                 <button className="font-semibold rounded-4xl p-2 text-center w-fit h-10 bg-white text-pink">Edit profile</button>
               </div>
             <Divider />
-            <Box sx={{m: 4, color: 'primary.black'}}>
+            <Box sx={{height: '100%', m: 4, color: 'primary.black'}}>
               <Typography variant="p" component="h2" sx={{mb: 2}}>
                 Favorite Activity
               </Typography>

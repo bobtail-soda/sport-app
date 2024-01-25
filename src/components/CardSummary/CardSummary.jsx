@@ -1,57 +1,55 @@
 import React from 'react'
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-// import DashboardCard from '/images/DashboardCard.jpg'
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import TimerIcon from '@mui/icons-material/Timer';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 
+import { 
+  ThemeProvider,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material"
+
+import { theme } from "./../../theme"
+
+
 const CardSummary = () => {
-  const theme = useTheme();
   return (
     <>
-    <Card sx={{ display: 'flex' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
-
-          <Typography component="div" variant="p">
-          <LocalFireDepartmentIcon />
-          Calories
+    <ThemeProvider theme={theme}>
+      {/* TODO: change to justify-between for responsive lg*/}
+    <div className="flex content-center items-center justify-center p-6 rounded-main m-5 bg-pink-light flex w-10/12">
+        <CardContent sx={{color: 'primary.main'}}>
+          <Typography component="div" variant="p" sx={{color: 'black'}}>
+          <LocalFireDepartmentIcon sx={{color: 'orange', mr: 1}} />
+            Calories
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-          1,000 Kcal
+          <p className="text-lg mb-3">
+            1,000 Kcal
+          </p>
+          <Typography component="div" variant="p" sx={{color: 'black'}}>
+          <TimerIcon sx={{mr: 1}} />
+            Time
           </Typography>
-          <Typography component="div" variant="p">
-          <TimerIcon />
-          Time
+          <p className="text-lg mb-3">
+            1 h 22 min
+          </p>
+          <Typography component="div" variant="p" sx={{color: 'black'}}>
+            <DirectionsRunIcon sx={{color: 'primary.main', mr: 1}} />
+            Distance
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-          1 h 22 min
-          </Typography>
-          <Typography component="div" variant="p">
-            <DirectionsRunIcon />
-          Distance
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-          4.21 km
-          </Typography>
+          <p className="text-lg">
+            4.21 km
+          </p>
         </CardContent>
-      </Box>
       <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image="/images/dashboard-card.jpg"
-        alt="Your avatar"
+        image="/images/dashboard-card.png"
+        alt="The strong women doing workout"
       />
-    </Card>
+      </div>
+      </ThemeProvider>
     </>
 
     

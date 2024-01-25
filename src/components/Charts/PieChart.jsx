@@ -2,14 +2,17 @@ import React from 'react'
 import Chart from "react-apexcharts";
 import 'apexcharts/dist/apexcharts.css';
 
-const PieChartWithImages = () => {
+const PieChart = () => {
     const chartData = {
-        series: [44, 55, 41, 17, 15],
+        series: [1, 2, 1, 1, 0],
         options: {
           chart: {
             type: 'donut',
           },
-          labels: ['Apple', 'Banana', 'Orange', 'Grapes', 'Mango'],
+          labels: ['Running', 'Yoga', 'Weight training', 'Walking', 'Hiking'],
+          legend: {
+              position: 'right'
+            }
         },
       };
   return (
@@ -17,9 +20,11 @@ const PieChartWithImages = () => {
          options={chartData.options}
          series={chartData.series}
          type="donut"
-         width="380"
+         width="480"
+
+        //  sx={{width: 'auto'}}
       />
   )
 }
 
-export default PieChartWithImages
+export default PieChart

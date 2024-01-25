@@ -3,17 +3,17 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import Navbar from "../shared/Navbar";
-import Rightbar from "../shared/Rightbar";
 import Toolbar from '@mui/material/Toolbar';
 
-const DashboardLayout = () => {
-  const drawerWidth=240;
+
+
+const ExerciseActivityLayout = () => {
   return (
     
     <>
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Navbar drawerWidth={drawerWidth}/>
+      <Navbar />
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
@@ -22,10 +22,9 @@ const DashboardLayout = () => {
         {/* content */}
         <Outlet />
       </Box>
-      <Rightbar />
     </Box>
     </>
   )
 }
 
-export default DashboardLayout
+export default ExerciseActivityLayout
