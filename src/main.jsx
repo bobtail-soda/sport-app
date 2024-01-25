@@ -34,6 +34,7 @@ import LandingPageDesk4 from "./pages/LandingPage/LandingPageDesk4.jsx";
 import LandingPageDesk5 from "./pages/LandingPage/LandingPageDesk5.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import DashboardLayout from "./components/layouts/DashboardLayout";
+<<<<<<< HEAD
 import EditProfile from "./pages/Editprofile/editProfile.jsx";
 
 import Corousel from "./pages/LandingPage/Corousel.jsx";
@@ -41,6 +42,9 @@ import Corousel from "./pages/LandingPage/Corousel.jsx";
 import ExerciseActivityLayout from "./components/layouts/ExerciseActivityLayout.jsx";
 import UserList from "./pages/User/List.jsx";
 import TrackingExerciseForm from "./pages/Exercise/CreateExercise/TrackingExerciseForm.jsx";
+=======
+import Corousel from "./pages/LandingPage/Corousel.jsx"
+>>>>>>> b11f28c (landingPage: corousel added)
 
 const router = createBrowserRouter([
   {
@@ -109,8 +113,13 @@ const router = createBrowserRouter([
     element: <LandingPageDesk5 />,
   },
   {
+<<<<<<< HEAD
     path: "/corousel",
     element: <Corousel />,
+=======
+    path: '/corousel',
+    element: <Corousel />
+>>>>>>> b11f28c (landingPage: corousel added)
   },
   {
     path: "/login",
