@@ -32,6 +32,7 @@ import LandingPageDesk4 from "./pages/LandingPage/LandingPageDesk4.jsx";
 import LandingPageDesk5 from "./pages/LandingPage/LandingPageDesk5.jsx";
 import ErrorPage from './pages/ErrorPage.jsx'
 import DashboardLayout from "./components/layouts/DashboardLayout";
+import Corousel from "./pages/LandingPage/Corousel.jsx"
 
 const router = createBrowserRouter([
   {
@@ -106,7 +107,10 @@ const router = createBrowserRouter([
     path: "/landingPageDesk5",
     element: <LandingPageDesk5 />,
   },
-
+  {
+    path: '/corousel',
+    element: <Corousel />
+  },
   {
     path: "/login",
     element: <Login />,

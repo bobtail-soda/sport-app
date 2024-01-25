@@ -4,6 +4,8 @@ import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import Corousel from "./Corousel";
+import { Height } from "@mui/icons-material";
 
 export const LayoutDesk = ({ children }) => {
   return (
@@ -46,7 +48,11 @@ export const LayoutDesk = ({ children }) => {
           </Stack>
         </Box>
       </Box>
-      {children}
+      <div className="">
+        <Corousel />
+      </div>
+      
+
     </Box>
   );
 };
