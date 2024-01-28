@@ -3,9 +3,14 @@ import cors from "cors";
 import express from "express";
 import multer from "multer";
 import bcrypt from "bcrypt";
+import swaggerUi from'swagger-ui-express';
+import swaggerDocument from'./swagger.json' assert { type: "json" };; 
+import swagger from './swagger.js';
+
 import databaseClient from "./services/database.mjs";
 import { checkMissingField } from "./utils/requestUtils.js";
 
+import appRoutes from "./routes/index.js";
 import records from "./routes/record.mjs";
 // import members from "./routes/member.mjs";
 
@@ -17,11 +22,16 @@ const SALT = 10;
 // setting initial configuration for upload file, web server (express), and cors
 const upload = multer({ dest: "uploads/" });
 dotenv.config();
+
 const webServer = express();
 webServer.use(cors());
 webServer.use(express.json());
 
+app.use(express.json())
+//Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //add your routing below
+app.use("/api", appRoutes);
 app.use("/record", records);
 // app.use("/member", members);
 
@@ -92,6 +102,9 @@ webServer.post("/login", async (req, res) => {
   };
   res.json(returnUser);
 });
+
+//call swagger
+swagger(app)
 
 // initilize web server
 const currentServer = webServer.listen(PORT, HOSTNAME, () => {
