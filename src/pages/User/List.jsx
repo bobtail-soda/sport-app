@@ -6,7 +6,13 @@ import UserCreate from './Create';
 const UserList = () => {
     const [users, setUsers] = useState([]);
     const [reload, setReload] = useState(false);
-    const userRoute = "users";
+    const userRoute = "api/users";
+
+    const token = localStorage.getItem('token');
+
+    const headers = {
+        'Authorization': `Bearer ${token}`
+      }
 
     useEffect(() => {
         getUserData();
@@ -15,7 +21,7 @@ const UserList = () => {
     //get user data
     const getUserData = async () => {
           
-      const response = await API.get(`${userRoute}`); // [GET] https://localhost:5000/api/users
+      const response = await API.get(`${userRoute}`, {headers: headers}); // [GET] https://localhost:5000/api/users
       console.log("response: ", response.data.data)
       // set member here
       if (response.status === 200 && response.data.data) {
@@ -46,7 +52,7 @@ const UserList = () => {
       const user_id = id
       
       
-      const response = await API.delete(`${userRoute}/${user_id}`) // [DELETE] https://localhost:5000/api/users/:id
+      const response = await API.delete(`${userRoute}/${user_id}`, {headers: headers}) // [DELETE] https://localhost:5000/api/users/:id
 
       if (response.status === 200) {
         setReload(!reload);
