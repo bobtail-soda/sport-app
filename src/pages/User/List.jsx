@@ -23,12 +23,12 @@ const UserList = () => {
       }
     };
     // Create data to api
-    const createData = async (formdata) => {
+    const createData = async (userName, email, password, phone) => {
         const requestData = {
-        userName: formdata.userName,
-        email: formdata.email,
-        password: formdata.password,
-        phone: formdata.phone,
+        userName: userName,
+        email: email,
+        password: password,
+        phone: phone,
         };
         console.log(requestData);
         const response = await API.post(`${userRoute}`, requestData);// [POST] https://localhost:5000/api/users , requestData
