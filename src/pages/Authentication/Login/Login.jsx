@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import API from '../../../api/axios';
 
 
@@ -15,9 +16,9 @@ import { theme } from "../../../theme"
 import { Link } from "react-router-dom"
     
   const Login = () => {
-
+    const navigate = useNavigate();
     const authRoute = "login";
-
+    
     const [formData, setFormData] = useState({
       email: "",
       password: "",
@@ -37,6 +38,7 @@ import { Link } from "react-router-dom"
       e.preventDefault();
   
       if (validateForm()) {
+        //call api login
         loginApi(formData);
         console.log("Form data submitted:", formData);
       } else {
@@ -62,19 +64,19 @@ import { Link } from "react-router-dom"
       return isValid;
     };
 
-    const loginApi = async (email, password) => {
-      const requestData = {
-      email: email,
-      password: password,
-      };
-      const response = await API.put(`${authRoute}`, requestData);// [POST] https://localhost:5000/api/login , requestData
-      const { token } = response.data;
 
-      // Store the tokens in localStorage or secure cookie for later use
-      localStorage.setItem('token', token);
+    const loginApi = async ({email, password}) => {
+      const requestData = {
+        email : email,
+        password : password
+      }
+      const response = await API.post(`${authRoute}`, requestData);// [POST] https://localhost:5000/login , requestData
 
       if (response.status === 200) {
-      setReload(!reload);
+        const { token } = response.data;
+        // Store the tokens in localStorage or secure cookie for later use
+        localStorage.setItem('token', token);
+        navigate("/dashboard");
       }
   };
   
