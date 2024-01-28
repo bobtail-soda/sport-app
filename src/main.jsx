@@ -37,11 +37,16 @@ import DashboardLayout from "./components/layouts/DashboardLayout";
 import Corousel from "./pages/LandingPage/Corousel.jsx";
 
 import ExerciseActivityLayout from "./components/layouts/ExerciseActivityLayout.jsx";
+import UserList from "./pages/User/List.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
+  },
+  {
+    path: "/users",
+    element: <UserList />,
   },
   {
     path: "/landingPage2",
