@@ -37,6 +37,7 @@ import DashboardLayout from "./components/layouts/DashboardLayout";
 import Corousel from "./pages/LandingPage/Corousel.jsx";
 
 import ExerciseActivityLayout from "./components/layouts/ExerciseActivityLayout.jsx";
+import TrackingExerciseForm from "./pages/Exercise/CreateExercise/TrackingExerciseForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -142,6 +143,10 @@ const router = createBrowserRouter([
   {
     path: "/history",
     element: <History />,
+  },
+  {
+    path: "/tracking-exercise",
+    element: <TrackingExerciseForm />,
   },
   {
     path: "/dashboard",
