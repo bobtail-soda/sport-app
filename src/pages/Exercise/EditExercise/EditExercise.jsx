@@ -168,7 +168,7 @@ const EditExercise = ({update, summaryData, handleClose}) => {
 
               <div className="flex flex-col w-full bg-white border border-grey rounded-main">
                 <div className="text-pink font-semibold bold p-5 flex justify-start">
-                  <label for="caption">Your caption</label>
+                  <label htmlFor="caption">Your caption</label>
                 </div>
                 <textarea
                   id="caption"
@@ -183,7 +183,7 @@ const EditExercise = ({update, summaryData, handleClose}) => {
                   <img className="w-80 h-full object-cover" src={createExercise} alt="The group of women are running" />
                 </div>
                 <div className="text-pink font-semibold bold p-5 flex justify-start">
-                  <label for="description">Description</label>
+                  <label htmlFor="description">Description</label>
                 </div>
                 <textarea
                   id="description"

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import createExercise from "/images/createExercise.jpg"
 import { theme } from "../../../theme"
 import { Link } from "react-router-dom"
+import UploadImage from '../../../components/UploadImage/UploadImage.jsx';
+
 
 const TrackingExerciseForm = () => {
 
@@ -16,7 +18,7 @@ const TrackingExerciseForm = () => {
   const [reload, setReload] = useState(false);
   const [isUpdate, setUpdate] = useState(false);
   const [id, setId] = useState("");
-
+  const [image, setImage] = useState("");
   const exerciseActivityRoute = "api/exercise-activities";
 
   const token = localStorage.getItem('token');
@@ -134,7 +136,7 @@ const TrackingExerciseForm = () => {
   }
 
       // Create Tracking Exercise Activity to api
-      const createExerciseActivity = async ({activity_type_id, caption, description, hour, minute, date, image}) => {
+      const createExerciseActivity = async ({activity_type_id, caption, description, hour, minute, date}) => {
         const requestData = {
           activity_type_id: activity_type_id,
           caption: caption,
@@ -261,7 +263,7 @@ const TrackingExerciseForm = () => {
 
               <div className="flex flex-col w-full bg-white border border-grey rounded-main">
                 <div className="text-pink font-semibold bold p-5 flex justify-start">
-                  <label for="caption">Your caption</label>
+                  <label htmlFor="caption">Your caption</label>
                 </div>
                 <textarea
                   id="caption"
@@ -273,24 +275,10 @@ const TrackingExerciseForm = () => {
                 ></textarea>
                 <span className="error text-red">{formErrors.caption}</span>
 
-                <div className="flex items-center justify-center w-full">
-                  <label htmlFor="dropzone-file" className="m-8 flex flex-col items-center justify-center w-full h-64 border-2 border-pink border-dashed rounded-4xl cursor-pointer hover:bg-pink-light">
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <svg className="w-8 h-8 mb-4 text-pink" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                      </svg>
-                      <p className="mb-2 text-sm"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                      <p className="text-xs text-grey">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                    </div>
-                    <input id="dropzone-file" type="file" className="hidden" />
-                  </label>
-                </div>
-
-                {/* <div className="flex justify-center">
-                  <img className="w-80 h-full object-cover" src={createExercise} alt="The group of women are running" />
-                </div> */}
+                <UploadImage setImage={setImage}/>
+                
                 <div className="text-pink font-semibold bold p-5 flex justify-start">
-                  <label for="description">Description</label>
+                  <label htmlFor="description">Description</label>
                 </div>
                 <textarea
                   id="description"

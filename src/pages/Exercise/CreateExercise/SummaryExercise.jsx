@@ -156,7 +156,7 @@ console.log("id: ", id)
               />
               
               <div className="flex justify-center">
-                <img className="w-80 h-full object-cover" src={createExercise} alt="The group of women are running" />
+                <img className="w-80 h-full object-cover" src={summaryData.image} alt="The group of women are running" />
               </div>
               <div className="text-pink font-semibold bold p-5 flex justify-start">
                 <label htmlFor="description">Description</label>
