@@ -13,6 +13,7 @@ import axios, { isCancel, AxiosError } from "axios";
 import { Link } from "react-router-dom";
 import Navmenu from "../../components/shared/Navmenu";
 import Copyright from "../../components/shared/Copyright";
+import Navbar from "../../components/shared/Navbar";
 
 const SignUp = () => {
   const initialFormData = {
@@ -29,6 +30,7 @@ const SignUp = () => {
     image: "",
   };
   const [formData, setFormData] = useState(initialFormData);
+  const [userId, setUserId] = useState();
 
   //Set Email input
   const [emailMsg, setEmailMsg] = useState("");
@@ -231,13 +233,13 @@ const SignUp = () => {
       // ทำอย่างอื่นต่อ เช่น ส่งข้่อมูลไป Back-end
       try {
         // Endpoint ของ backend API ที่คุณต้องการส่งข้อมูลไป
-        const backendEndpoint = "https://greensculpt.onrender.com/signup";
+        const backendEndpoint = `https://sport-api-92rv.onrender.com/api/users/${userId}`;
 
         // สร้าง object ที่มีข้อมูลทั้งหมดที่คุณต้องการส่งไปยัง backend
         const requestData = {
           login_email: formData.email,
           signup_firstname: formData.firstname,
-          signup_lastname: formData.lastname,
+          signup_lastname: formData.lastname, 
           login_password: formData.password,
           signup_date: toDate(formData.date_of_birth),
           signup_gender: formData.gender,
@@ -274,17 +276,12 @@ const SignUp = () => {
   return (
     <>
       <div className="bg-[url('/moutain_pic.png')] bg-fixed bg-no-repeat bg-cover min-h-[1800px] md:min-h-[1100px] h-screen w-screen">
-        <Copyright />
+        <Navbar className="flex justify-evenly items-center" />
         <Navmenu />
         <form onSubmit={handleSubmit} noValidate>
           <main className="container mx-auto font-poppins">
             <section className="pt-20 relative">
-              <Link to="/login">
-                <button className="btn bg-[#d2fe71] hover:bg-[#a5cf4a]/80 drop-shadow text-xl font-normal border-none hidden md:flex absolute top-[90px] left-[10px]">
-                  <span className="material-symbols-outlined">arrow_back</span>
-                  Back
-                </button>
-              </Link>
+              <Link to="/login"></Link>
 
               <div className="flex flex-col md:flex-row justify-center bg-[rgb(255,255,255)]/75 ">
                 <div className="md:w-4/5 flex flex-col md:flex-row justify-center">
@@ -531,12 +528,12 @@ const SignUp = () => {
                   <div className="md:w-1/5 flex justify-center">
                     <div className="justify-center bg-grey-lighter pt-10 md:p-24">
                       <label className="w-48 h-48 md:h-36 md:w-36 flex flex-col items-center justify-center bg-gray-200 text-blue rounded-[40px] shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-[#8BCA00]">
-                        <span className="material-symbols-outlined">
+                        {/* <span className="material-symbols-outlined">
                           photo_camera
                         </span>
                         <p className="mt-2 text-base text-center leading-normal">
                           Select a Photo
-                        </p>
+                        </p> */}
                         <input
                           type="file"
                           accept=".jpg, .png, .jpeg"
