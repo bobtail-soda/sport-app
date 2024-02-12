@@ -15,6 +15,7 @@ import Navmenu from "../../components/shared/Navmenu";
 import Copyright from "../../components/shared/Copyright";
 import Navbar from "../../components/shared/Navbar";
 import API from "../../api/axios";
+import UploadImage from "../../components/UploadImage/UploadImage";
 
 const SignUp = () => {
   const token = localStorage.getItem("token");
@@ -26,7 +27,7 @@ const SignUp = () => {
   const initialFormData = {
     email: "",
     firstname: "",
-    lastname: "",
+
     password: "",
     confirmpassword: "",
     date_of_birth: "",
@@ -37,6 +38,7 @@ const SignUp = () => {
     image: "",
   };
   const [formData, setFormData] = useState(initialFormData);
+  const [image, setImage] = useState("");
   // const [userId, setUserId] = useState();
 
   //Set Email input
@@ -59,11 +61,6 @@ const SignUp = () => {
   const [fnameMsg, setFnameMsg] = useState("");
   const [fnamePassColorMsg, setFnameColorMsg] = useState("");
   const [fnameColorfield, setFnameColorfield] = useState("border-gray-800");
-
-  //Set LastName input
-  const [lnameMsg, setLnameMsg] = useState("");
-  const [lnamePassColorMsg, setLnameColorMsg] = useState("");
-  const [lnameColorfield, setLnameColorfield] = useState("border-gray-800");
 
   //Set PhoneNumber input
   const [phoneMsg, setPhoneMsg] = useState("");
@@ -166,28 +163,6 @@ const SignUp = () => {
       }
     }
 
-    //Check LastName
-    if (id === "lastname") {
-      const isAlphabet = isAlpha(value);
-      const isEmptyLastName = isEmpty(value);
-      const isLnameLength = isLength(value, { min: 2 });
-
-      if (isAlphabet && isLnameLength) {
-        setLnameMsg("Your name is valid");
-        setLnameColorMsg("text-[#8BCA00]");
-        setLnameColorfield("border-[#8BCA00]");
-      } else if (!isAlphabet) {
-        setLnameMsg("Your name is Invalid");
-        setLnameColorMsg("text-red-500");
-        setLnameColorfield("border-red-500");
-      }
-      if (isEmptyLastName) {
-        setLnameMsg("");
-        setLnameColorMsg("");
-        setLnameColorfield("border-gray-800");
-      }
-    }
-
     //Check PhoneNumber
     if (id === "phone_Number") {
       const phoneLength = isLength(value, { min: 10 });
@@ -217,7 +192,7 @@ const SignUp = () => {
     e.preventDefault();
     const validEmail = isEmail(formData.email);
     const isEmptyFirstName = isEmpty(formData.firstname);
-    const isEmptyLastName = isEmpty(formData.lastname);
+
     // const strongPass = isStrongPassword(formData.password, { minSymbols: 0 });
     const strongPass = formData.password;
     const isPasswordMatch = equals(formData.confirmpassword, formData.password);
@@ -229,7 +204,6 @@ const SignUp = () => {
     if (
       validEmail &&
       !isEmptyFirstName &&
-      !isEmptyLastName &&
       strongPass &&
       isPasswordMatch &&
       !isEmptyHeight &&
@@ -241,27 +215,29 @@ const SignUp = () => {
       // ทำอย่างอื่นต่อ เช่น ส่งข้่อมูลไป Back-end
       try {
         // Endpoint ของ backend API ที่คุณต้องการส่งข้อมูลไป
-        const updateUserRoute = `/api/users/edit-profile/${userId}`;
+        const updateUserRoute = `/api/users/${userId}`;
 
         // สร้าง object ที่มีข้อมูลทั้งหมดที่คุณต้องการส่งไปยัง backend
         const requestData = {
           email: formData.email,
           userName: formData.firstname,
-          signup_lastname: formData.lastname,
           login_password: formData.password,
-          signup_date: toDate(formData.date_of_birth),
           signup_gender: formData.gender,
           signup_height: toInt(formData.height),
           signup_weight: toInt(formData.weight),
           phone: formData.phone_Number,
-          image: formData.image,
+          avatar: image,
           // เพิ่ม property ต่อไปตามต้องการ
         };
 
         // ส่ง HTTP POST request ไปยัง backend
-        const response = await API.post(updateUserRoute, requestData, {
-          headers: headers,
-        });
+        const response = await API.post(
+          "/api/users/65c8f4fc9aa2f67b7fbd27a7",
+          requestData,
+          {
+            headers: headers,
+          }
+        );
 
         // ตรวจสอบ response จาก backend
         if (response.status === 200) {
@@ -318,6 +294,29 @@ const SignUp = () => {
                       {/* Div เปล่า ทำให้ด้านข้างเสมอกันกับข้างล่าง */}
                       <div className="md:w-2/5"></div>
                     </div>
+
+                    <div className="md:flex justify-evenly mb-10">
+                      <div className="md:w-2/5 mb-10 md:mb-0">
+                        <label
+                          className="font-medium text-xl text-gray-800"
+                          htmlFor="First Name"
+                        >
+                          Username
+                        </label>
+                        <input
+                          className={`w-full p-2 bg-transparent border-b-2 ${fnameColorfield} focus:outline-none placeholder-gray-700`}
+                          type="text"
+                          placeholder="Username"
+                          id="firstname"
+                          onChange={handleInputChange}
+                        />
+                        <div className={`${fnamePassColorMsg} text-sm md:w-72`}>
+                          {fnameMsg}
+                        </div>
+                      </div>
+                      <div className="md:w-2/5"></div>
+                    </div>
+
                     <div className="md:flex md:justify-evenly">
                       <div className="md:w-2/5">
                         <label
@@ -365,45 +364,6 @@ const SignUp = () => {
                           className={`${confirmPassColorMsg} text-sm md:w-72`}
                         >
                           {confirmPassMsg}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="md:flex justify-evenly mb-10">
-                      <div className="md:w-2/5 mb-10 md:mb-0">
-                        <label
-                          className="font-medium text-xl text-gray-800"
-                          htmlFor="First Name"
-                        >
-                          First Name
-                        </label>
-                        <input
-                          className={`w-full p-2 bg-transparent border-b-2 ${fnameColorfield} focus:outline-none placeholder-gray-700`}
-                          type="text"
-                          placeholder="First Name"
-                          id="firstname"
-                          onChange={handleInputChange}
-                        />
-                        <div className={`${fnamePassColorMsg} text-sm md:w-72`}>
-                          {fnameMsg}
-                        </div>
-                      </div>
-                      <div className="md:w-2/5 mb-10">
-                        <label
-                          className="font-medium text-xl text-gray-800"
-                          htmlFor="Last Name"
-                        >
-                          Last Name
-                        </label>
-                        <input
-                          className={`w-full p-2 bg-transparent border-b-2 ${lnameColorfield} focus:outline-none placeholder-gray-700`}
-                          type="text"
-                          placeholder="Last Name"
-                          id="lastname"
-                          onChange={handleInputChange}
-                        />
-                        <div className={`${lnamePassColorMsg} text-sm md:w-72`}>
-                          {lnameMsg}
                         </div>
                       </div>
                     </div>
@@ -528,30 +488,16 @@ const SignUp = () => {
                     <div className="md:flex md:justify-evenly">
                       <div className="md:w-2/5">
                         <button className="btn bg-[#d2fe71] hover:bg-[#a5cf4a]/80 w-full drop-shadow text-xl font-normal border-none">
-                          Sign Up
+                          Done
                         </button>
                       </div>
                       {/* Div เปล่า ทำให้ด้านข้างเสมอกันกับข้างล่าง */}
                       <div className="md:w-2/5"></div>
                     </div>
                   </div>
-                  <div className="md:w-1/5 flex justify-center">
-                    <div className="justify-center bg-grey-lighter pt-10 md:p-24">
-                      <label className="w-48 h-48 md:h-36 md:w-36 flex flex-col items-center justify-center bg-gray-200 text-blue rounded-[40px] shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-[#8BCA00]">
-                        {/* <span className="material-symbols-outlined">
-                          photo_camera
-                        </span>
-                        <p className="mt-2 text-base text-center leading-normal">
-                          Select a Photo
-                        </p> */}
-                        <input
-                          type="file"
-                          accept=".jpg, .png, .jpeg"
-                          className="hidden"
-                          id="signup_photo"
-                        />
-                      </label>
-                    </div>
+
+                  <div className="md:w-1/5 flex flex-col justify-start">
+                    <UploadImage setImage={setImage} />
                   </div>
                 </div>
               </div>
