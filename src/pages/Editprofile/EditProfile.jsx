@@ -14,8 +14,15 @@ import { Link } from "react-router-dom";
 import Navmenu from "../../components/shared/Navmenu";
 import Copyright from "../../components/shared/Copyright";
 import Navbar from "../../components/shared/Navbar";
+import API from "../../api/axios";
 
 const SignUp = () => {
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
   const initialFormData = {
     email: "",
     firstname: "",
@@ -30,7 +37,7 @@ const SignUp = () => {
     image: "",
   };
   const [formData, setFormData] = useState(initialFormData);
-  const [userId, setUserId] = useState();
+  // const [userId, setUserId] = useState();
 
   //Set Email input
   const [emailMsg, setEmailMsg] = useState("");
@@ -204,14 +211,15 @@ const SignUp = () => {
     }
   };
 
-  console.log(formData);
+  console.log("form data: ", formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validEmail = isEmail(formData.email);
     const isEmptyFirstName = isEmpty(formData.firstname);
     const isEmptyLastName = isEmpty(formData.lastname);
-    const strongPass = isStrongPassword(formData.password, { minSymbols: 0 });
+    // const strongPass = isStrongPassword(formData.password, { minSymbols: 0 });
+    const strongPass = formData.password;
     const isPasswordMatch = equals(formData.confirmpassword, formData.password);
     const isEmptyDate = isEmpty(formData.date_of_birth);
     const isEmptyHeight = isEmpty(formData.height);
@@ -233,25 +241,27 @@ const SignUp = () => {
       // ทำอย่างอื่นต่อ เช่น ส่งข้่อมูลไป Back-end
       try {
         // Endpoint ของ backend API ที่คุณต้องการส่งข้อมูลไป
-        const backendEndpoint = `https://sport-api-92rv.onrender.com/api/users/${userId}`;
+        const updateUserRoute = `/api/users/edit-profile/${userId}`;
 
         // สร้าง object ที่มีข้อมูลทั้งหมดที่คุณต้องการส่งไปยัง backend
         const requestData = {
-          login_email: formData.email,
-          signup_firstname: formData.firstname,
-          signup_lastname: formData.lastname, 
+          email: formData.email,
+          userName: formData.firstname,
+          signup_lastname: formData.lastname,
           login_password: formData.password,
           signup_date: toDate(formData.date_of_birth),
           signup_gender: formData.gender,
           signup_height: toInt(formData.height),
           signup_weight: toInt(formData.weight),
-          signup_phone: formData.phone_Number,
-          signup_photo: formData.image,
+          phone: formData.phone_Number,
+          image: formData.image,
           // เพิ่ม property ต่อไปตามต้องการ
         };
 
         // ส่ง HTTP POST request ไปยัง backend
-        const response = await axios.post(backendEndpoint, requestData);
+        const response = await API.post(updateUserRoute, requestData, {
+          headers: headers,
+        });
 
         // ตรวจสอบ response จาก backend
         if (response.status === 200) {
