@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 760b2ff2775837bc7d5e8168bd1dc47f24ab2e91
 import { useEffect, useState } from "react";
 import validator from "validator";
 import isEmail from "validator/lib/isEmail";
@@ -526,4 +529,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
->>>>>>> f8efab9 (change url)
+
