@@ -541,34 +541,46 @@ const SignUp = () => {
 
                   <div className="md:w-1/5 flex flex-col justify-start">
                     <UploadImage setImage={setImage} className="p-5" />
+
+                    <div className="flex justify-center">
+                      <button
+                        onClick={handleOpen}
+                        className="rounded-4xl text-white bg-red text-sm w-full px-5 py-2.5 text-center"
+                      >
+                        Delete Account
+                      </button>
+                      <Modal
+                        className="self-center"
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box
+                          sx={style}
+                          className="rounded-4xl text-black bg-red text-sm w-full px-5 py-2.5 text-center"
+                        >
+                          <Typography
+                            id="modal-modal-title"
+                            variant="h6"
+                            component="h2"
+                          >
+                            You are going to delete accout
+                          </Typography>
+                          <Typography
+                            id="modal-modal-description"
+                            sx={{ mt: 2 }}
+                          >
+                            Are you sure about this ?
+                          </Typography>
+                          <button onClick={handleSubmitDelete}>
+                            Delete for sure
+                          </button>
+                        </Box>
+                      </Modal>
+                    </div>
                   </div>
                   {/* delete zone */}
-                  <div>
-                    <Button onClick={handleOpen}>DELETE</Button>
-                    <Modal
-                      open={open}
-                      onClose={handleClose}
-                      aria-labelledby="modal-modal-title"
-                      aria-describedby="modal-modal-description"
-                    >
-                      <Box
-                        sx={style}
-                        className="rounded-4xl text-black bg-red text-sm w-full px-5 py-2.5 text-center"
-                      >
-                        <Typography
-                          id="modal-modal-title"
-                          variant="h6"
-                          component="h2"
-                        >
-                          You are going to delete accout
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          Are you sure about this ?
-                        </Typography>
-                        <Button onClick={handleSubmitDelete}>Delete for sure</Button>
-                      </Box>
-                    </Modal>
-                  </div>
                 </div>
               </div>
             </section>
