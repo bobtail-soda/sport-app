@@ -18,8 +18,29 @@ import Copyright from "../../components/shared/Copyright";
 import Navbar from "../../components/shared/Navbar";
 import API from "../../api/axios";
 import UploadImage from "../../components/UploadImage/UploadImage";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const SignUp = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  // token
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
   const headers = {
@@ -231,13 +252,9 @@ const SignUp = () => {
         };
 
         // ส่ง HTTP POST request ไปยัง backend
-        const response = await API.post(
-          updateUserRoute,
-          requestData,
-          {
-            headers: headers,
-          }
-        );
+        const response = await API.post(updateUserRoute, requestData, {
+          headers: headers,
+        });
 
         // ตรวจสอบ response จาก backend
         if (response.status === 200) {
@@ -274,14 +291,16 @@ const SignUp = () => {
                   <div className="pt-10 md:pt-24 p-10">
                     <div className="md:flex md:justify-evenly justify-center ">
                       <div className="md:w-2/5">
+                        {/* prototype for label css */}
                         <label
-                          className="font-medium text-xl text-gray-800"
+                          className="text-left block mb-3 mt-6 text-sm"
                           htmlFor="Email"
                         >
                           Email
                         </label>
+                        {/* prototype for input css */}
                         <input
-                          className={`w-full p-2 bg-transparent border-b-2 ${emailColorField} focus:outline-none placeholder-gray-700`}
+                          className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-black text-sm block w-full p-2.5"
                           type="email"
                           placeholder="Email Address"
                           id="email"
@@ -298,13 +317,13 @@ const SignUp = () => {
                     <div className="md:flex justify-evenly mb-10">
                       <div className="md:w-2/5 mb-10 md:mb-0">
                         <label
-                          className="font-medium text-xl text-gray-800"
+                          className="text-left block mb-3 mt-6 text-sm"
                           htmlFor="First Name"
                         >
                           Username
                         </label>
                         <input
-                          className={`w-full p-2 bg-transparent border-b-2 ${fnameColorfield} focus:outline-none placeholder-gray-700`}
+                          className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-black text-sm block w-full p-2.5"
                           type="text"
                           placeholder="Username"
                           id="firstname"
@@ -320,13 +339,13 @@ const SignUp = () => {
                     <div className="md:flex md:justify-evenly">
                       <div className="md:w-2/5">
                         <label
-                          className="font-medium text-xl text-gray-800"
+                          className="text-left block mb-3 mt-6 text-sm"
                           htmlFor="Password"
                         >
                           Password
                         </label>
                         <input
-                          className={`w-full p-2 bg-transparent border-b-2 ${passColorfield} focus:outline-none placeholder-gray-700`}
+                          className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-black text-sm block w-full p-2.5"
                           type="password"
                           placeholder="Password"
                           id="password"
@@ -344,13 +363,13 @@ const SignUp = () => {
                       </div>
                       <div className="md:w-2/5 mb-20">
                         <label
-                          className="font-medium text-xl text-gray-800"
+                          className="text-left block mb-3 mt-6 text-sm"
                           htmlFor="Confirm Password"
                         >
                           Confirm Password
                         </label>
                         <input
-                          className={`w-full p-2 bg-transparent border-b-2 ${confirmPassColorfield} focus:outline-none placeholder-gray-700`}
+                          className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-black text-sm block w-full p-2.5"
                           type="password"
                           placeholder="Confirm Password"
                           id="confirmpassword"
@@ -371,13 +390,13 @@ const SignUp = () => {
                     <div className="md:flex md:justify-evenly">
                       <div className="md:w-2/5">
                         <label
-                          className="font-medium text-xl text-gray-800"
+                          className="text-left block mb-3 mt-6 text-sm"
                           htmlFor="Date of Birth"
                         >
                           Date of Birth
                         </label>
                         <input
-                          className="w-full p-2 mb-10 bg-transparent border-b-2 border-gray-800 focus:outline-none placeholder-gray-700"
+                          className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-white text-sm block w-full p-2.5"
                           type="date"
                           id="date_of_birth"
                           onChange={handleInputChange}
@@ -387,19 +406,19 @@ const SignUp = () => {
                       <div className="md:w-2/5 md:flex md:justify-between">
                         <div className="w-full md:w-2/5">
                           <label
-                            className="font-medium text-xl text-gray-800"
+                            className="text-left block mb-3 mt-6 text-sm"
                             htmlFor="Height"
                           >
                             Height
                           </label>
                           <select
-                            className="w-full p-2 mb-10 bg-transparent border-b-2 border-gray-800 focus:outline-none placeholder-gray-700"
+                            className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-white text-sm block w-full p-2.5"
                             id="height"
                             placeholder="Height : cm"
                             onChange={handleInputChange}
                           >
                             <option value="" selected>
-                              Not specified
+                              Select
                             </option>
                             <option value="" defaultValue disabled hidden>
                               Height : cm
@@ -413,19 +432,19 @@ const SignUp = () => {
                         </div>
                         <div className="w-full md:w-2/5">
                           <label
-                            className="font-medium text-xl text-gray-800"
+                            className="text-left block mb-3 mt-6 text-sm"
                             htmlFor="Weight"
                           >
                             Weight
                           </label>
                           <select
-                            className="w-full p-2 mb-10 bg-transparent border-b-2 border-gray-800 focus:outline-none placeholder-gray-700"
+                            className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-white text-sm block w-full p-2.5"
                             id="weight"
                             placeholder="Weight : kg"
                             onChange={handleInputChange}
                           >
                             <option value="" selected>
-                              Not specified
+                              select
                             </option>
                             <option value="" defaultValue disabled hidden>
                               Height : cm
@@ -446,33 +465,37 @@ const SignUp = () => {
                     <div className="md:flex md:justify-evenly">
                       <div className="md:w-2/5">
                         <label
-                          className="font-medium text-xl text-gray-800"
+                          className="text-left block mb-3 mt-6 text-sm"
                           htmlFor="Gender"
                         >
                           Gender
                         </label>
                         <select
-                          className="w-full p-2 mb-10 bg-transparent border-b-2 border-gray-800 focus:outline-none placeholder-gray-700"
+                          className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-white text-sm block w-full p-2.5"
                           id="gender"
                           onChange={handleInputChange}
                         >
+                          <option
+                            value="select"
+                            selected
+                            className="placeholder-white"
+                          >
+                            select
+                          </option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
-                          <option value="notspecified" selected>
-                            Not specified
-                          </option>
                         </select>
                       </div>
 
                       <div className="md:w-2/5 mb-20">
                         <label
-                          className="font-medium text-xl text-gray-800"
+                          className="text-left block mb-3 mt-6 text-sm"
                           htmlFor="PhoneNumber"
                         >
                           Phone Number
                         </label>
                         <input
-                          className={`w-full p-2 bg-transparent border-b-2 ${phoneColorfield} focus:outline-none placeholder-gray-700`}
+                          className="outline-0 pl-5 placeholder-white border-transparent rounded-4xl bg-blue text-black text-sm block w-full p-2.5"
                           id="phone_Number"
                           type="tel"
                           placeholder="000-000-0000"
@@ -487,7 +510,7 @@ const SignUp = () => {
                     </div>
                     <div className="md:flex md:justify-evenly">
                       <div className="md:w-2/5">
-                        <button className="btn bg-[#d2fe71] hover:bg-[#a5cf4a]/80 w-full drop-shadow text-xl font-normal border-none">
+                        <button className="rounded-4xl text-white bg-pink text-sm w-full px-5 py-2.5 text-center">
                           Done
                         </button>
                       </div>
@@ -497,7 +520,34 @@ const SignUp = () => {
                   </div>
 
                   <div className="md:w-1/5 flex flex-col justify-start">
-                    <UploadImage setImage={setImage} />
+                    <UploadImage setImage={setImage} className="p-5" />
+                  </div>
+                  {/* delete zone */}
+                  <div>
+                    <Button onClick={handleOpen}>DELETE</Button>
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <Box
+                        sx={style}
+                        className="rounded-4xl text-white bg-pink text-sm w-full px-5 py-2.5 text-center"
+                      >
+                        <Typography
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          You are going to delete accout
+                        </Typography>
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                          Are you sure to do this ? This action will never bring
+                          back again.
+                        </Typography>
+                      </Box>
+                    </Modal>
                   </div>
                 </div>
               </div>
