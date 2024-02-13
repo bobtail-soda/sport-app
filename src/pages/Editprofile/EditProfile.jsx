@@ -276,6 +276,26 @@ const SignUp = () => {
     console.log(toInt(formData.weight));
   };
 
+  const handleSubmitDelete = async (e) => {
+    e.preventDefault();
+    const deleteUserRoute = `/api/users/${userId}`;
+    try {
+      const response = await API.delete(deleteUserRoute, {
+        headers: headers,
+      });
+      // ตรวจสอบ response จาก backend
+      if (response.status === 200) {
+        alert("Deleted ");
+        // ทำอย่างอื่นต่อ เช่น redirect หน้า, แสดงข้อความ, ฯลฯ
+      } else {
+        alert("Failed to delete");
+      }
+    } catch (error) {
+      console.error("Error sending delete request", error);
+      alert("An error occurred while sending data to the backend.");
+    }
+  };
+
   return (
     <>
       <div className="bg-[url('/moutain_pic.png')] bg-fixed bg-no-repeat bg-cover min-h-[1800px] md:min-h-[1100px] h-screen w-screen">
@@ -533,7 +553,7 @@ const SignUp = () => {
                     >
                       <Box
                         sx={style}
-                        className="rounded-4xl text-white bg-pink text-sm w-full px-5 py-2.5 text-center"
+                        className="rounded-4xl text-black bg-red text-sm w-full px-5 py-2.5 text-center"
                       >
                         <Typography
                           id="modal-modal-title"
@@ -543,9 +563,9 @@ const SignUp = () => {
                           You are going to delete accout
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          Are you sure to do this ? This action will never bring
-                          back again.
+                          Are you sure about this ?
                         </Typography>
+                        <Button onClick={handleSubmitDelete}>Delete for sure</Button>
                       </Box>
                     </Modal>
                   </div>
