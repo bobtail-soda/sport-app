@@ -55,18 +55,7 @@ const router = createBrowserRouter([
     path: "/users",
     element: <UserList />,
   },
-  {
-    path: "/landingPage2",
-    element: <LandingPage2 />,
-  },
-  {
-    path: "/landingPage3",
-    element: <LandingPage3 />,
-  },
-  {
-    path: "/landingPage4",
-    element: <LandingPage4 />,
-  },
+  
   {
     path: "/forgot-password",
     element: <ForgotPassword />,
@@ -83,31 +72,7 @@ const router = createBrowserRouter([
     path: "/create-new-password",
     element: <CreateNewPassword />,
   },
-  {
-    path: "/landingPageStarted",
-    element: <LandingPageStarted />,
-  },
-  {
-    path: "/landingPageDesk1",
-    element: <LandingPageDesk1 />,
-  },
-  {
-    path: "/landingPageDesk2",
-    element: <LandingPageDesk2 />,
-  },
-  {
-    path: "/landingPageDesk3",
-    element: <LandingPageDesk3 />,
-  },
-  {
-
-    path: "/landingPageDesk4",
-    element: <LandingPageDesk4 />,
-  },
-  {
-    path: "/landingPageDesk5",
-    element: <LandingPageDesk5 />,
-  },
+  
   {
     path: "/corousel",
     element: <Corousel />,

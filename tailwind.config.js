@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
     colors: {
@@ -27,7 +28,15 @@ export default {
     require("@tailwindcss/forms")({
       strategy: 'base', // only generate global styles
       strategy: 'class', // only generate classes
+      
+      
     }),
-],
+    require("tw-elements/dist/plugin.cjs"),
+    
+
+    
+],darkMode: "class"
 }
+// TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com 
+
 

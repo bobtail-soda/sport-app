@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Corousel from "./Corousel";
 import { Height } from "@mui/icons-material";
+import CarouselText from "./CarouselText";
 
 export const LayoutDesk = ({ children }) => {
   return (
@@ -49,7 +50,8 @@ export const LayoutDesk = ({ children }) => {
         </Box>
       </Box>
       <div className="">
-        <Corousel />
+        {/* <Corousel /> */}
+        <CarouselText/>
       </div>
       
 

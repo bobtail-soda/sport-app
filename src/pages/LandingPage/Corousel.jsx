@@ -12,7 +12,7 @@ function Corousel(props) {
   ];
 
   return (
-    <Carousel sx={{height: "25%"}}>
+    <Carousel sx={{ height: "25%" }}>
       {picUrl.map((item, i) => (
         <Item key={i} item={item} />
       ))}
@@ -21,7 +21,13 @@ function Corousel(props) {
 }
 
 function Item({ key, item }) {
-  return <img src={item} className="w-full h-1/4 object-cover"/>;
+  return (
+    <div>
+      <h1>Workout anywhere</h1>
+      
+      <img src={item} className="w-full h-1/4 object-cover" />;
+    </div>
+  );
 }
 
 export default Corousel;
