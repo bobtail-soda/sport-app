@@ -23,23 +23,10 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import { useNavigate } from "react-router-dom";
+import DeleteButton from "./DeleteButton";
 
 const SignUp = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   // token
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
@@ -268,7 +255,7 @@ const SignUp = () => {
         alert("An error occurred while sending data to the backend.");
       }
     } else {
-      alert("Invalid Data");
+      console.log("Invalid Data");
     }
 
     console.log(toDate(formData.date_of_birth));
@@ -276,25 +263,8 @@ const SignUp = () => {
     console.log(toInt(formData.weight));
   };
 
-  const handleSubmitDelete = async (e) => {
-    e.preventDefault();
-    const deleteUserRoute = `/api/users/${userId}`;
-    try {
-      const response = await API.delete(deleteUserRoute, {
-        headers: headers,
-      });
-      // ตรวจสอบ response จาก backend
-      if (response.status === 200) {
-        alert("Deleted ");
-        // ทำอย่างอื่นต่อ เช่น redirect หน้า, แสดงข้อความ, ฯลฯ
-      } else {
-        alert("Failed to delete");
-      }
-    } catch (error) {
-      console.error("Error sending delete request", error);
-      alert("An error occurred while sending data to the backend.");
-    }
-  };
+  
+  
 
   return (
     <>
@@ -541,44 +511,8 @@ const SignUp = () => {
 
                   <div className="md:w-1/5 flex flex-col justify-start">
                     <UploadImage setImage={setImage} className="p-5" />
-
-                    <div className="flex justify-center">
-                      <button
-                        onClick={handleOpen}
-                        className="rounded-4xl text-white bg-red text-sm w-full px-5 py-2.5 text-center"
-                      >
-                        Delete Account
-                      </button>
-                      <Modal
-                        className="self-center"
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box
-                          sx={style}
-                          className="rounded-4xl text-black bg-red text-sm w-full px-5 py-2.5 text-center"
-                        >
-                          <Typography
-                            id="modal-modal-title"
-                            variant="h6"
-                            component="h2"
-                          >
-                            You are going to delete accout
-                          </Typography>
-                          <Typography
-                            id="modal-modal-description"
-                            sx={{ mt: 2 }}
-                          >
-                            Are you sure about this ?
-                          </Typography>
-                          <button onClick={handleSubmitDelete}>
-                            Delete for sure
-                          </button>
-                        </Box>
-                      </Modal>
-                    </div>
+                    {/* delete button */}
+                    <DeleteButton />
                   </div>
                   {/* delete zone */}
                 </div>
