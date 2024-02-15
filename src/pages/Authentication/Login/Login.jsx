@@ -54,40 +54,23 @@ import { Link } from "react-router-dom"
       }
     }
 
-    // const validateForm = () => {
-    //   let errors = {};
-    //   let isValid = true;
-  
-    //   if (!formData.email.trim()) {
-    //     errors.email = "Email is required";
-    //     isValid = false;
-    //   }
-  
-    //   if (!formData.password.trim()) {
-    //     errors.password = "Password is required";
-    //     isValid = false;
-    //   }
-  
-    //   setFormErrors(errors);
-    //   return isValid;
-    // };
-
-
     const validateForm = () => {
-      const schema = Joi.object({
-          email: Joi.string().email({ tlds: { allow: false } }).required(),
-          password: Joi.string().min(6).required(),
-      });
-
-      const { error } = schema.validate(data, { abortEarly: false });
-      if (!error) return null;
-
-      const errors = {};
-      for (let item of error.details) {
-          errors[item.path[0]] = item.message;
+      let errors = {};
+      let isValid = true;
+  
+      if (!formData.email.trim()) {
+        errors.email = "Email is required";
+        isValid = false;
       }
-      return errors;
-  };
+  
+      if (!formData.password.trim()) {
+        errors.password = "Password is required";
+        isValid = false;
+      }
+  
+      setFormErrors(errors);
+      return isValid;
+    };
 
     const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
