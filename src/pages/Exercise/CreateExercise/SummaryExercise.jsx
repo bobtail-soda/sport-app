@@ -67,6 +67,19 @@ const SummaryExercise = () => {
     }
   };
 
+  
+  const getActivitiesTypeById = async () => {
+
+    const id = summaryData.activity_type_id;
+    
+    const response = await API.get(`${activityTypeRoute}/${id}`, {headers: headers}); // [GET] https://localhost:5000/api/activity-type
+    console.log("response: ", response.data.data)
+    // set member here
+    if (response.status === 200 && response.data.data) {
+      setActivitiesTypeData(response.data.data);
+    }
+  };
+
    // Update Tracking Exercise Activity to api
 >>>>>>> 6dbe526 (editexercisev2)
    const updateExerciseActivity = async ({id, activity_type_id, caption, description, hour, minute, distance, date, image}) => {
