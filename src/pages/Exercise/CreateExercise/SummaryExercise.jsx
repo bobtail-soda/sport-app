@@ -54,8 +54,6 @@ const SummaryExercise = () => {
   };
 
   
-
-  
   const getActivitiesTypeById = async () => {
 
     const id = summaryData.activity_type_id;
