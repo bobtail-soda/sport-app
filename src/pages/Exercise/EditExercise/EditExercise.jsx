@@ -118,7 +118,6 @@ const EditExercise = ({update, summaryData, handleClose}) => {
       console.log("Form submission failed due to validation errors.");
     }
   }
-    
  
 
   return (
