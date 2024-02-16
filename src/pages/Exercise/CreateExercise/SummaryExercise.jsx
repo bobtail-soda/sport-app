@@ -198,6 +198,7 @@ const SummaryExercise = () => {
         </Container>
       </ThemeProvider>
     </>
+
   )
 }
 
