@@ -6,7 +6,7 @@ import { Box, Container, Typography, ThemeProvider, } from "@mui/material"
 import ActivityTypeAPI from '../../../api/services/activityType';
 
 const EditExercise = ({update, summaryData, handleClose}) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [activitiesTypeList, setActivitiesTypeList] = useState([]);
   const [selectedActivityType, setSelectedActivityType] = useState()
   const [activitiesTypeData, setActivitiesTypeData] = useState([]);
