@@ -22,6 +22,8 @@ const EditExercise = ({update, summaryData, handleClose}) => {
     image: summaryData.image
   });
 
+
+  
   const [formErrors, setFormErrors] = useState({
     id: "",
     activity_type_id: "",
