@@ -36,6 +36,8 @@ const EditExercise = ({update, summaryData, handleClose}) => {
     image: summaryData.image
   });
 
+
+  
   const [formErrors, setFormErrors] = useState({
     id: "",
     activity_type_id: "",
@@ -144,8 +146,7 @@ const EditExercise = ({update, summaryData, handleClose}) => {
       console.log("Form submission failed due to validation errors.");
     }
   }
-    
-     
+ 
 
   return (
 <>
@@ -177,7 +178,7 @@ const EditExercise = ({update, summaryData, handleClose}) => {
             <input type="hidden" id="id" name="id" value={activitiesTypeData.id} />
             <form onSubmit={handleSubmit}>
               <select onChange={handleInputChange} name="activity_type_id" className="mb-10 outline-0 block w-full p-2.5 px-0.5 rounded-4xl bg-blue text-white pl-5 text-sm">
-                <option value={activitiesTypeData.name}>Running</option>
+                <option value="Running">Running</option>
                 <option value="Weight training">Weight training</option>
                 <option value="Hike">Hike</option>
                 <option value="Yoga">Yoga</option>
