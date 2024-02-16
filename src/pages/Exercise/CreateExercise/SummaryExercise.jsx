@@ -51,6 +51,7 @@ const SummaryExercise = () => {
     }
   };
 
+
   
   const getActivitiesTypeById = async () => {
 
@@ -100,24 +101,7 @@ const SummaryExercise = () => {
         navigate("/history");        
   };
 
-  //get Activities Type Name
-  const getActivityTypeById = async () => {
-    const id = summaryData.activity_type_id;
-    const response = await ActivityTypeAPI.getActivityTypeById(id);
-    // set member here
-    if (response.success === true && response.data) {
-      console.log(response.data)
-      setActivitiesTypeData(response.data);
-    }
-  };
 
-
-
-
-    // Link to History
-    const BackToHistory = async (id) => {
-         navigate("/history");        
-    };
 
       // //get Activity type data
   // const getActivitiesTypeList  = async () => {
@@ -230,6 +214,7 @@ const SummaryExercise = () => {
         </Container>
       </ThemeProvider>
     </>
+
   )
 }
 
