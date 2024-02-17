@@ -47,7 +47,10 @@ const SummaryExercise = () => {
     const response = await ExerciseActivityAPI.getExerciseActivityById(id);
     if (response) {
       setSummaryData(response);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 308ed88 (temp)
     }
   };
 
@@ -177,6 +180,7 @@ const SummaryExercise = () => {
             </button>
 
             {/* Model Update Form */}  
+<<<<<<< HEAD
           
  
                    <Modal 
@@ -194,11 +198,27 @@ const SummaryExercise = () => {
                             {/* <DeleteButtonNested /> */}
                         </Box>
                     </Modal>
+=======
+            <Modal 
+                className="self-center display:block !important overflow-y: initial !important height: 80vh overflow-y: auto"
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+              <Box
+                  // sx={style}
+                  // className="rounded-4xl text-black bg-white text-sm w-full px-5 py-2.5 text-left"
+              >   
+                <EditExercise update={updateExerciseActivity} summaryData={summaryData} handleClose={handleClose}/>
+                    {/* <DeleteButtonNested /> */}
+              </Box>
+            </Modal>
+>>>>>>> 308ed88 (temp)
           </Box>
         </Container>
       </ThemeProvider>
     </>
-
   )
 }
 
