@@ -64,7 +64,7 @@ const SummaryExercise = () => {
     }
   };
 
-   // Update Tracking Exercise Activity to api
+   // Update data
    const updateExerciseActivity = async ({id, activity_type_id, caption, description, hour, minute, distance, date, image}) => {
     const requestData = {
       id: id,
