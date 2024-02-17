@@ -51,34 +51,7 @@ const SummaryExercise = () => {
     }
   };
 
-
-  
-  const getActivitiesTypeById = async () => {
-
-    const id = summaryData.activity_type_id;
-    
-    const response = await API.get(`${activityTypeRoute}/${id}`, {headers: headers}); // [GET] https://localhost:5000/api/activity-type
-    console.log("response: ", response.data.data)
-    // set member here
-    if (response.status === 200 && response.data.data) {
-      setActivitiesTypeData(response.data.data);
-    }
-  };
-
-  
-  const getActivitiesTypeById = async () => {
-
-    const id = summaryData.activity_type_id;
-    
-    const response = await API.get(`${activityTypeRoute}/${id}`, {headers: headers}); // [GET] https://localhost:5000/api/activity-type
-    console.log("response: ", response.data.data)
-    // set member here
-    if (response.status === 200 && response.data.data) {
-      setActivitiesTypeData(response.data.data);
-    }
-  };
-
-   // Update Tracking Exercise Activity to api
+   // Update data
    const updateExerciseActivity = async ({id, activity_type_id, caption, description, hour, minute, distance, date, image}) => {
     const requestData = {
       id: id,
@@ -114,19 +87,16 @@ const SummaryExercise = () => {
         navigate("/history");        
   };
 
-
-
-      // //get Activity type data
-  // const getActivitiesTypeList  = async () => {
-    
-  //   const response = await API.get(`${activityTypeRoute}`, {headers: headers}); // [GET] https://localhost:5000/api/activity-type
-  //   console.log("response: ", response.data.data)
-  //   // set member here
-  //   if (response.status === 200 && response.data.data) {
-  //     setActivitiesTypeList([...response.data.data]);
-  //   }
-  // };
-
+  //get Activities Type Name
+  const getActivityTypeById = async () => {
+    const id = summaryData.activity_type_id;
+    const response = await ActivityTypeAPI.getActivityTypeById(id);
+    // set member here
+    if (response.success === true && response.data) {
+      console.log(response.data)
+      setActivitiesTypeData(response.data);
+    }
+  };
 
   return (
     <>
@@ -226,7 +196,6 @@ const SummaryExercise = () => {
         </Container>
       </ThemeProvider>
     </>
-
   )
 }
 
