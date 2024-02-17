@@ -22,8 +22,6 @@ const EditExercise = ({update, summaryData, handleClose}) => {
     image: summaryData.image
   });
 
-
-  
   const [formErrors, setFormErrors] = useState({
     id: "",
     activity_type_id: "",
@@ -118,8 +116,7 @@ const EditExercise = ({update, summaryData, handleClose}) => {
       console.log("Form submission failed due to validation errors.");
     }
   }
- 
-
+    
   return (
     <ThemeProvider theme={theme}>
       <Container
