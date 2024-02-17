@@ -5,7 +5,7 @@ import { theme } from "../../../theme";
 import formatDate from '../../../utils/formatDate';
 
 import ExerciseActivityAPI from '../../../api/services/exerciseActivity.js';
-import ActivityTypeAPI from '../../../api/services/activityType.js';
+import ActivityTypeAPI from '../../ActivityType/ActivityType.jsx';
 //Component
 import EditExercise from '../EditExercise/EditExercise.jsx'
 
@@ -232,7 +232,6 @@ const SummaryExercise = () => {
         </Container>
       </ThemeProvider>
     </>
-
   )
 }
 
